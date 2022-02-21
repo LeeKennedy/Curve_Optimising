@@ -38,7 +38,7 @@ for(i in 1:m) {
         slope_intercept <- fit_summary$coefficients[1]
         R2_fit <- fit_summary$r.squared
         SE_fit <- fit_summary$sigma
-        Run_Set = paste(i,":",n)
+        Run_Set = paste(i,"to",n)
 
 df <- rbind(df, data.frame(Run_set = Run_Set, Slope = slope_fit, Intercept = slope_intercept, R2 = R2_fit, SE = SE_fit))
 }
@@ -56,8 +56,9 @@ for(i in 1:m) {
         slope_intercept <- fit_summary$coefficients[1]
         R2_fit <- fit_summary$r.squared
         SE_fit <- fit_summary$sigma
-        Run_Set = paste("1:",j)
+        Run_Set = paste("1 to",j)
         
         df <- rbind(df, data.frame(Run_set = Run_Set, Slope = slope_fit, Intercept = slope_intercept, R2 = R2_fit, SE = SE_fit))
 }
 df
+
