@@ -5,6 +5,7 @@ rm(list=ls())
 library(readxl)
 library(tidyverse)
 library(LK.Toolbox)
+library(xlsx)
 library(here)
 
 
@@ -62,3 +63,4 @@ for(i in 1:m) {
 }
 df
 
+write.xlsx(df, "curve_table.xlsx")
