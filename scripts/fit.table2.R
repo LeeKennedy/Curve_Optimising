@@ -15,8 +15,8 @@ library(here)
 #### Data Input -----------------------------
 here::here()
 
-data_in <- read_excel("data/Sorbic_Benzoic.xlsx", 
-                      sheet = "Caffeine")
+data_in <- read_excel("data/Ethanol_Run2.xlsx", 
+                      sheet = "Sheet2")
 
 #### Data Cleaning -----------------------------
 
@@ -75,4 +75,4 @@ for(i in 1:m) {
 }
 df
 
-write_xlsx(df, "Caff_curve_table.xlsx")
+# write_xlsx(df, "Ethanol2_table.xlsx")
