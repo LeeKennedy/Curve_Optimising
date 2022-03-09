@@ -41,10 +41,10 @@ for(i in 1:m) {
         data_in2 <- data_in[c(i:n),]
         Points = as.numeric(nrow(data_in2))
         
-        fit <- lm(data_in2$Ratio~data_in2$Standard)
+        fit <- lm(data_in2$Ratio~data_in2$Standard-1)
         fit_summary <- summary(fit)
-        slope_fit <- fit_summary$coefficients[2]
-        slope_intercept <- fit_summary$coefficients[1]
+        slope_fit <- fit_summary$coefficients[1]
+        slope_intercept <- 0
         R2_fit <- fit_summary$r.squared
         SE_fit <- fit_summary$sigma
         Run_Set = paste(i,"to",n)
@@ -61,10 +61,10 @@ for(i in 1:m) {
         data_in2 <- data_in[c(1:j),]
         Points = as.numeric(nrow(data_in2))
         
-        fit <- lm(data_in2$Ratio~data_in2$Standard)
+        fit <- lm(data_in2$Ratio~data_in2$Standard-1)
         fit_summary <- summary(fit)
-        slope_fit <- fit_summary$coefficients[2]
-        slope_intercept <- fit_summary$coefficients[1]
+        slope_fit <- fit_summary$coefficients[1]
+        slope_intercept <- 0
         R2_fit <- fit_summary$r.squared
         SE_fit <- fit_summary$sigma
         Run_Set = paste("1 to",j)
@@ -77,4 +77,4 @@ df
 
 
 
-# write_xlsx(df, "Ethanol2_table.xlsx")
+# write_xlsx(df, "Ethanol2_table_zero.xlsx")
