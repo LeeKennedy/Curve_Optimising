@@ -28,7 +28,6 @@ df <- data.frame(Run_set = as.character(),
                  Intercept = as.numeric(), 
                  R2 = as.numeric(),
                  SE = as.numeric(),
-                 Ratio = as.numeric(),
                  stringsAsFactors=FALSE) 
 m=n-3
 
@@ -44,11 +43,9 @@ for(i in 1:m) {
         R2_fit <- fit_summary$r.squared
         SE_fit <- fit_summary$sigma
         Run_Set = paste(i,"to",n)
-        l = as.numeric(data_in2[1,1])
-        u = as.numeric(data_in2[Points,1])
-        validx = ((slope_fit*u+slope_intercept)/(slope_fit*l+slope_intercept))/(u/l)
+      
 
-df <- rbind(df, data.frame(Run_set = Run_Set, Points, Slope = slope_fit, Intercept = slope_intercept, R2 = R2_fit, SE = SE_fit, Ratio = validx))
+df <- rbind(df, data.frame(Run_set = Run_Set, Points, Slope = slope_fit, Intercept = slope_intercept, R2 = R2_fit, SE = SE_fit))
 }
 df
 
@@ -66,12 +63,10 @@ for(i in 1:m) {
         R2_fit <- fit_summary$r.squared
         SE_fit <- fit_summary$sigma
         Run_Set = paste("1 to",j)
-        l = as.numeric(data_in2[1,1])
-        u = as.numeric(data_in2[j,1])
-        validx = ((slope_fit*u+slope_intercept)/(slope_fit*l+slope_intercept))/(u/l)
         
         
-        df <- rbind(df, data.frame(Run_set = Run_Set, Points, Slope = slope_fit, Intercept = slope_intercept, R2 = R2_fit, SE = SE_fit, Ratio = validx))
+        
+        df <- rbind(df, data.frame(Run_set = Run_Set, Points, Slope = slope_fit, Intercept = slope_intercept, R2 = R2_fit, SE = SE_fit))
 }
 df
 
