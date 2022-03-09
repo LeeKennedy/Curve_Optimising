@@ -50,7 +50,7 @@ for(i in 1:m) {
         Run_Set = paste(i,"to",n)
       
 
-df <- rbind(df, data.frame(Run_set = Run_Set, Points, Slope = slope_fit, Intercept = slope_intercept, R2 = R2_fit, SE = SE_fit))
+df <- rbind(df, data.frame(Run_set = Run_Set, Points, Slope = round(slope_fit,4), Intercept = slope_intercept, R2 = round(R2_fit,4), SE = round(SE_fit,4)))
 }
 df
 
@@ -69,9 +69,7 @@ for(i in 1:m) {
         SE_fit <- fit_summary$sigma
         Run_Set = paste("1 to",j)
         
-        
-        
-        df <- rbind(df, data.frame(Run_set = Run_Set, Points, Slope = slope_fit, Intercept = slope_intercept, R2 = R2_fit, SE = SE_fit))
+        df <- rbind(df, data.frame(Run_set = Run_Set, Points, Slope = round(slope_fit,4), Intercept = slope_intercept, R2 = round(R2_fit,4), SE = round(SE_fit,4)))
 }
 df
 
