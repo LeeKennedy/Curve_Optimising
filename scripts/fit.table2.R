@@ -15,7 +15,7 @@ library(here)
 #### Data Input -----------------------------
 here::here()
 
-data_in <- read_excel("data/Ethanol_Run2.xlsx", 
+data_in <- read_excel("data/Ethanol_Run3.xlsx", 
                       sheet = "Sheet2")
 
 #### Data Cleaning -----------------------------
@@ -50,7 +50,7 @@ for(i in 1:m) {
         Run_Set = paste(i,"to",n)
       
 
-df <- rbind(df, data.frame(Run_set = Run_Set, Points, Slope = slope_fit, Intercept = slope_intercept, R2 = R2_fit, SE = SE_fit))
+df <- rbind(df, data.frame(Run_set = Run_Set, Points, Slope = round(slope_fit,4), Intercept = round(slope_intercept,4), R2 = round(R2_fit,4), SE = round(SE_fit,4)))
 }
 df
 
@@ -71,10 +71,12 @@ for(i in 1:m) {
         
         
         
-        df <- rbind(df, data.frame(Run_set = Run_Set, Points, Slope = slope_fit, Intercept = slope_intercept, R2 = R2_fit, SE = SE_fit))
+        df <- rbind(df, data.frame(Run_set = Run_Set, Points, Slope = round(slope_fit,4), Intercept = round(slope_intercept,4), R2 = round(R2_fit,4), SE = round(SE_fit,4)))
+        
 }
+
+df <- df %>% arrange(SE)
+df$LOQ <- round(df$SE*10,2)
 df
-
-
 
 # write_xlsx(df, "Ethanol2_table.xlsx")
