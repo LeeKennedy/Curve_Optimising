@@ -79,4 +79,4 @@ df <- df %>% arrange(SE)
 df$LOQ <- round(df$SE*10,2)
 df
 
-# write_xlsx(df, "Ethanol2_table.xlsx")
+# write_xlsx(df, "output/Ethanol2_table.xlsx")

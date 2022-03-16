@@ -66,4 +66,4 @@ for(i in 1:m) {
 }
 df
 
-write_xlsx(df, "curve_table.xlsx")
+write_xlsx(df, "output/curve_table.xlsx")
