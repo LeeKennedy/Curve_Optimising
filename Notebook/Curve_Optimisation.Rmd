@@ -1,32 +1,43 @@
-#### Clean Up environment -----------------------------
-rm(list=ls())
+---
+title: "Curve Optimisation"
+output: html_notebook
+---
 
-#### The intent of this script is to look at various combinations
-# of data points in a standard curve, to see which gives the
-# most precise (low se) fit.  It does not force through zero.
-# Data must be in two columns, x (independent variable) in A and y 
-# (dependent variable) in column B.  Columns are labelled.
 
-#### Packages -----------------------------
+
+```{r, echo=FALSE}
 library(readxl)
 library(tidyverse)
 library(LK.Toolbox)
 library(writexl)
-library(here)
 
 
-#### Functions -----------------------------
+data_in <- read_excel("C:/Users/lee.kennedy/OneDrive - ALS Limited/Documents/GitHub/Curve_Optimising/data/Sorbic_Notebook.xlsx")
+
+force_zero <- data_in$Force_Zero[1]
+units <- data_in$Units[1]
+analyte <- data_in$Analyte[1]
+```
+
+This is an investigation of the `r analyte` standard curve to see which grouping of standards is most appropriate to use.
 
 
-#### Data Input -----------------------------
-here::here()
-
-data_in <- read_excel("data/Ethanol_Run3.xlsx", 
-                      sheet = "Sheet2")
-
-#### Data Cleaning -----------------------------
-
+```{r, echo=FALSE}
+data_in <- data_in[,1:2]
 data_in <- data_in %>% mutate(data_in, ID = row_number())
+data_in$Units <- units
+data_in <- data_in[,c(3,1,4,2)]
+# data_in[,4] <- signif(data_in[,4],4)
+data_in
+
+```
+
+The following table groups standards into Run Sets, based on their ID number.
+
+
+
+```{r, echo=FALSE}
+data_in <- data_in[,c(2,4)]
 
 df <- data.frame(Run_set = as.character(),
                  Points = as.numeric(),
@@ -45,7 +56,7 @@ for(i in 1:m) {
         data_in2 <- data_in[c(i:n),]
         Points = as.numeric(nrow(data_in2))
         
-        fit <- lm(data_in2$Ratio~data_in2$Standard)
+        fit <- lm(data_in2$Reading~data_in2$Standard)
         fit_summary <- summary(fit)
         slope_fit <- fit_summary$coefficients[2]
         slope_intercept <- fit_summary$coefficients[1]
@@ -56,7 +67,6 @@ for(i in 1:m) {
 
 df <- rbind(df, data.frame(Run_set = Run_Set, Points, Slope = round(slope_fit,4), Intercept = round(slope_intercept,4), R2 = round(R2_fit,4), SE = round(SE_fit,4)))
 }
-df
 
 m=n-3
 
@@ -65,7 +75,7 @@ for(i in 1:m) {
         data_in2 <- data_in[c(1:j),]
         Points = as.numeric(nrow(data_in2))
         
-        fit <- lm(data_in2$Ratio~data_in2$Standard)
+        fit <- lm(data_in2$Reading~data_in2$Standard)
         fit_summary <- summary(fit)
         slope_fit <- fit_summary$coefficients[2]
         slope_intercept <- fit_summary$coefficients[1]
@@ -82,8 +92,6 @@ for(i in 1:m) {
 df <- df %>% arrange(SE)
 df$LOQ <- round(df$SE*10,2)
 
-## The 'Run Set' is the group of standards used in the curve.
-
 df
+```
 
-# write_xlsx(df, "output/Ethanol2_table.xlsx")

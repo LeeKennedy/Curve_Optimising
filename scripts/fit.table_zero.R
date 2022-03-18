@@ -1,6 +1,13 @@
 #### Clean Up environment -----------------------------
 rm(list=ls())
 
+#### The intent of this script is to look at various combinations
+# of data points in a standard curve, to see which gives the
+# most precise (low se) fit.  It forces through zero.
+# Data must be in two columns, x (independent variable) in A and y 
+# (dependent variable) in column B.  Columns are labelled.
+
+
 #### Packages -----------------------------
 library(readxl)
 library(tidyverse)
