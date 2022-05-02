@@ -22,7 +22,7 @@ library(here)
 #### Data Input -----------------------------
 here::here()
 
-data_in <- read_excel("data/Ethanol_Run3.xlsx", 
+data_in <- read_excel("data/Ethanol_Run6.xlsx", 
                       sheet = "Sheet2")
 
 #### Data Cleaning -----------------------------
@@ -48,7 +48,7 @@ for(i in 1:m) {
         data_in2 <- data_in[c(i:n),]
         Points = as.numeric(nrow(data_in2))
         
-        fit <- lm(data_in2$Ratio~data_in2$Standard-1)
+        fit <- lm(data_in2$Reading~data_in2$Standard-1)
         fit_summary <- summary(fit)
         slope_fit <- fit_summary$coefficients[1]
         slope_intercept <- 0
@@ -68,7 +68,7 @@ for(i in 1:m) {
         data_in2 <- data_in[c(1:j),]
         Points = as.numeric(nrow(data_in2))
         
-        fit <- lm(data_in2$Ratio~data_in2$Standard-1)
+        fit <- lm(data_in2$Reading~data_in2$Standard-1)
         fit_summary <- summary(fit)
         slope_fit <- fit_summary$coefficients[1]
         slope_intercept <- 0
@@ -86,4 +86,4 @@ df
 
 
 
-# write_xlsx(df, "output/Ethanol2_table_zero.xlsx")
+# write_xlsx(df, "output/Ethanol6_table_zero.xlsx")

@@ -7,13 +7,15 @@ output:
 
 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(readxl)
 library(tidyverse)
 library(writexl)
+library(here)
 
+here::here()
 
-data_in <- read_excel("C:/Users/lee.kennedy/OneDrive - ALS Limited/Documents/GitHub/Curve_Optimising/data/Ethanol_Run6.xlsx")
+data_in <- read_excel(here("data", "Ethanol_Run6.xlsx"))
 
 force_zero <- data_in$Force_Zero[1]
 units <- data_in$Units[1]
