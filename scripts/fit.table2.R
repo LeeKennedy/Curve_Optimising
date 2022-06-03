@@ -21,8 +21,7 @@ library(here)
 #### Data Input -----------------------------
 here::here()
 
-data_in <- read_excel("data/Ethanol_Run6.xlsx", 
-                      sheet = "Sheet2")
+data_in <- read_excel("data/Copper.xlsx")
 
 #### Data Cleaning -----------------------------
 
