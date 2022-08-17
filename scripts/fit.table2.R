@@ -22,7 +22,7 @@ library(here)
 here::here()
 
 
-data_in <- read_excel("data/Arsenic.xlsx")
+data_in <- read_excel("data/Alcohol_Aug.xlsx")
 
 
 #### Data Cleaning -----------------------------
