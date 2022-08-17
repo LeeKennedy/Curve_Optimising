@@ -15,7 +15,7 @@ library(here)
 
 here::here()
 
-data_in <- read_excel(here("data", "Ethanol_Run6.xlsx"))
+data_in <- read_excel(here("data", "Arsenic.xlsx"))
 
 force_zero <- data_in$Force_Zero[1]
 units <- data_in$Units[1]

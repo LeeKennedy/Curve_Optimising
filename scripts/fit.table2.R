@@ -21,8 +21,9 @@ library(here)
 #### Data Input -----------------------------
 here::here()
 
-data_in <- read_excel("data/Ethanol_Run6.xlsx", 
-                      sheet = "Sheet2")
+
+data_in <- read_excel("data/Arsenic.xlsx")
+
 
 #### Data Cleaning -----------------------------
 
@@ -80,7 +81,7 @@ for(i in 1:m) {
 }
 
 df <- df %>% arrange(SE)
-df$LOQ <- round(df$SE*10,2)
+df$LOQ <- round(df$SE*10,4)
 
 ## The 'Run Set' is the group of standards used in the curve.
 
